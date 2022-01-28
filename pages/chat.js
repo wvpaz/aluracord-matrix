@@ -95,13 +95,8 @@ export default function ChatPage() {
         }
 
         setMessageList([
-<<<<<<< HEAD
             buildMessage,
             ...messageList]);
-=======
-            ...messageList,
-            buildMessage],);
->>>>>>> db55f695f1a1dc3c80a0922dd933f14ad85dee62
     }
 }
 
