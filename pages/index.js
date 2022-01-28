@@ -24,8 +24,10 @@ function Title(props) {
 
 // export default HomePage
 export default function PaginaInicial() {
-    //const username = 'wvpaz';
-    const [userName, setUserName] = React.useState('wvpaz')
+    const [userName, setUserName] = React.useState('wvpaz');
+    const [disabledEnterButton, setDisabledEnterButton] = React.useState(() => {
+        return isDisabledEnterButton(userName);
+    });
     const routing = useRouter();
 
     return (
@@ -87,6 +89,8 @@ export default function PaginaInicial() {
 
                                 // Trocar o valor da variável através do React e avise a quem precisa 
                                 setUserName(currentValue);
+
+                                setDisabledEnterButton(isDisabledEnterButton(currentValue));
                             }}
                         />
                         <Button
@@ -99,6 +103,7 @@ export default function PaginaInicial() {
                                 mainColorLight: appConfig.theme.colors.primary[400],
                                 mainColorStrong: appConfig.theme.colors.primary[600],
                             }}
+                            disabled={disabledEnterButton}
                         />
                     </Box>
                     {/* Formulário */}
@@ -144,4 +149,8 @@ export default function PaginaInicial() {
             </Box>
         </>
     );
+
+    function isDisabledEnterButton(userName) {
+        return userName.length > 2 ? false : true;
+    }
 }
